@@ -1,0 +1,7 @@
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@podlove_org" />
+<meta name="twitter:creator" content="@podlove_org" />
+<meta property="og:url" content="<%= Plug.Conn.request_url(@conn) %>" />
+<meta property="og:title" content="<%= @podcast.title %>" />
+<meta property="og:description" content="<%= @podcast.description %>" />
+<meta property="og:image" content="<%= @podcast.cover_url %>" />
