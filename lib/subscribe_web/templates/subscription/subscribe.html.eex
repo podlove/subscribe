@@ -1,1 +1,9 @@
-<%= @feed %>
+<div class="tc">
+  <h1><%= @podcast.title %></h1>
+
+<script>
+window.podcastData = <%= raw Jason.encode!(@button_opts) %>
+</script>
+<script class="podlove-subscribe-button" src="https://cdn.podlove.org/subscribe-button/javascripts/app.js" data-language="de" data-size="big" data-format="cover" data-json-data="podcastData" data-buttonid="123abc"></script>
+
+</div>

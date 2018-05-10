@@ -15,6 +15,6 @@ defmodule Subscribe.Repo.Migrations.CreatePodcasts do
       timestamps()
     end
 
-    unique_index(:podcasts, :feed)
+    create(unique_index(:podcasts, :feed))
   end
 end
