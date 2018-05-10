@@ -13,6 +13,7 @@ defmodule Subscribe.Core.Podcast do
     field(:subtitle, :string)
     field(:title, :string)
     field(:type, :string)
+    field(:homepage_url, :string)
 
     timestamps()
   end
@@ -29,7 +30,8 @@ defmodule Subscribe.Core.Podcast do
       :cover_url,
       :type,
       :format,
-      :itunes_url
+      :itunes_url,
+      :homepage_url
     ])
     |> validate_required([:feed])
     |> unique_constraint(:feed)
@@ -46,7 +48,8 @@ defmodule Subscribe.Core.Podcast do
         description: fields.itunes_summary,
         cover_url: fields.image,
         type: "audio",
-        format: "mp3"
+        format: "mp3",
+        homepage_url: fields.link
       })
 
     podcast
