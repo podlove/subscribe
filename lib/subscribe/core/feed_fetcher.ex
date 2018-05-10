@@ -8,10 +8,10 @@ defmodule Subscribe.Core.FeedFetcher do
         :notmodified
 
       {:ok, %HTTPoison.Response{status_code: 404}} ->
-        raise url <> " Not found :("
+        {:error, 404}
 
       {:error, %HTTPoison.Error{reason: reason}} ->
-        raise reason
+        {:error, reason}
     end
   end
 

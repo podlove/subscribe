@@ -18,6 +18,7 @@ defmodule SubscribeWeb.Router do
     pipe_through(:browser)
 
     get("/", PageController, :index)
+    get("/subscribe/config/*feed_url", SubscriptionController, :config)
     get("/subscribe/*feed_url", SubscriptionController, :subscribe)
   end
 

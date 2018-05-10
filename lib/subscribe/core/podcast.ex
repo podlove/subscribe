@@ -38,20 +38,28 @@ defmodule Subscribe.Core.Podcast do
   end
 
   def refresh_data(podcast = %Podcast{feed: feed}) do
-    {:ok, xml, _headers} = Subscribe.Core.FeedFetcher.fetch(feed)
-    fields = Subscribe.FeedParser.parse(xml)
+    case Subscribe.Core.FeedFetcher.fetch(feed) do
+      {:ok, xml, _headers} ->
+        Subscribe.Core.FeedFetcher.fetch(feed)
+        fields = Subscribe.FeedParser.parse(xml)
 
-    {:ok, podcast} =
-      Core.update_podcast(podcast, %{
-        title: fields.title,
-        subtitle: fields.itunes_subtitle,
-        description: fields.itunes_summary,
-        cover_url: fields.image,
-        type: "audio",
-        format: "mp3",
-        homepage_url: fields.link
-      })
+        {:ok, podcast} =
+          Core.update_podcast(podcast, %{
+            title: fields.title,
+            subtitle: fields.itunes_subtitle,
+            description: fields.itunes_summary,
+            cover_url: fields.image,
+            type: "audio",
+            format: "mp3",
+            homepage_url: fields.link
+          })
 
-    podcast
+        podcast
+
+      {:error, _reason} ->
+        Core.delete_podcast(podcast)
+
+        :notfound
+    end
   end
 end
