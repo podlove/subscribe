@@ -1,5 +1,5 @@
 
-<form class="bg-near-white near-black mw7 center pa4 ma1 ma5-ns br2-ns ba b--black-10">
+<form class="bg-near-white near-black mw7 center pa4 ma1 ma5-ns mb3 mb3-ns br2-ns ba b--black-10">
   <header class="tc mb3 mb4-l">
     <img src="/images/podlove-icon.svg" width="50" />
   </header>
@@ -12,3 +12,10 @@
     </div>
   </fieldset>
 </form>
+
+<div class="mw7 center white pt1 lh-copy f6">
+  <a class="no-underline near-white bg-animate bg-near-black hover-bg-mid-gray  inline-flex items-center m12 tc br2 pa1" href="https://podlove.org" target="_blank" title="Podlove">
+    <img src="/images/podlove-icon-white.svg" class="dib h2 w2"/>
+    <span class="f6 ml1 pr2">Powered by Podlove</span>
+  </a>
+</div>
