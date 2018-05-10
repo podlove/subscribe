@@ -1,9 +1,30 @@
-<div class="tc">
-  <h1><%= @podcast.title %></h1>
-
-<script>
-window.podcastData = <%= raw Jason.encode!(@button_opts) %>
-</script>
-<script class="podlove-subscribe-button" src="https://cdn.podlove.org/subscribe-button/javascripts/app.js" data-language="de" data-size="big" data-format="cover" data-json-data="podcastData" data-buttonid="123abc"></script>
-
+<article class="mw6 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10">
+  <div class="tc">
+    <h1 class="f3 lh-copy"><%= @podcast.title %></h1>
+    <%= if @podcast.subtitle do %>
+      <p class="lh-copy measure center f6 black-70">
+        <%= @podcast.subtitle %>
+      </p>
+    <% end %>
+    <hr class="mw3 bb bw1 b--black-10" />
+  </div>
+  <p class="tc lh-copy measure center f6 black-70">
+    <script>
+    window.podcastData = <%= raw Jason.encode!(@button_opts) %>
+    </script>
+    <script class="podlove-subscribe-button" src="https://cdn.podlove.org/subscribe-button/javascripts/app.js" data-language="de" data-size="big" data-format="cover" data-json-data="podcastData" data-buttonid="123abc"></script>
+  </p>
+  <hr class="mw3 bb bw1 b--black-10" />
+  <%= if @podcast.description do %>
+    <p class="lh-copy measure center f6 black-70">
+      <%= @podcast.description %>
+    </p>
+  <% end %>
+</article>
+<div class="mw6 center white pt1 lh-copy f6">
+  <a class="no-underline near-white bg-animate bg-near-black hover-bg-mid-gray  inline-flex items-center m12 tc br2 pa1" href="https://podlove.org" title="Podlove">
+    <img src="/images/podlove-icon-white.svg" class="dib h2 w2"/>
+    <span class="f6 ml1 pr2">Powered by Podlove</span>
+  </a>
+   
 </div>

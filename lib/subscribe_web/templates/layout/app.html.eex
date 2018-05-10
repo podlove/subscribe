@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
-  <body class="sans-serif">
+  <body class="sans-serif bg-near-black">
 
     <!--
     <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
