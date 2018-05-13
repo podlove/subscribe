@@ -5,7 +5,7 @@ defmodule SubscribeWeb.SubscriptionController do
   alias Subscribe.Core.Podcast
   import Subscribe.Core.Feed, only: [url_from_components: 2]
 
-  def subscribe(conn, params = %{"feed_url" => feed_components}) do
+  def subscribe(conn, params) do
     podcast = get_podcast(params)
 
     case podcast.podcast do
@@ -17,7 +17,7 @@ defmodule SubscribeWeb.SubscriptionController do
     end
   end
 
-  def config(conn, params = %{"feed_url" => feed_components}) do
+  def config(conn, params) do
     podcast = get_podcast(params)
     render(conn, "config.json", button_opts: podcast.button_opts)
   end
@@ -43,7 +43,7 @@ defmodule SubscribeWeb.SubscriptionController do
       {:ok, %Podcast{} = podcast} ->
         Podcast.refresh_data(podcast)
 
-      {:error, %Ecto.Changeset{} = changeset} ->
+      {:error, %Ecto.Changeset{}} ->
         nil
     end
   end
@@ -60,9 +60,18 @@ defmodule SubscribeWeb.SubscriptionController do
           format: podcast.format,
           url: podcast.feed
         }
-      ]
+      ],
+      language: language(podcast)
     }
   end
+
+  defp language(%{language: language}) do
+    language
+    |> String.split("-")
+    |> List.first()
+  end
+
+  defp language(_), do: "en"
 
   defp button_opts(_) do
     %{}

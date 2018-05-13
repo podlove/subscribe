@@ -12,6 +12,7 @@ defmodule Subscribe.Repo.Migrations.CreatePodcasts do
       add(:format, :string)
       add(:itunes_url, :text)
       add(:homepage_url, :text)
+      add(:language, :text)
 
       timestamps()
     end
