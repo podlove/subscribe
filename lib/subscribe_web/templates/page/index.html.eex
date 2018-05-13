@@ -1,10 +1,24 @@
 
 <form class="bg-near-white near-black mw7 center pa4 ma1 ma5-ns mb3 mb3-ns br2-ns ba b--black-10">
-  <header class="tc mb3 mb4-l">
-    <img src="/images/podlove-icon.svg" width="50" />
+  <header class="dt mw6 center pt0 pv3 pb4-ns">
+
+      <div class="db dtc-ns v-mid-ns">
+        <img src="/images/podlove-icon.svg" width="50" class="w-100 mw3 w3-ns mr3-ns" />
+      </div>
+      <div class="db dtc-ns v-mid ph2 pr0-ns pl3-ns">
+        <p class="lh-copy">
+          <h2 class="f3 fw7 ttu tracked lh-title mt0 mb2">
+            Create universal subscription links for your podcast.
+          </h2>
+          <h3 class="f5 fw4 lh-title mt0">
+            Easily share the Podlove Subscribe Button for listeners to subscribe. Works on every platform: iOS, Android; mobile and desktop.
+          </h3>
+        </p>
+      </div>
+
   </header>
   <fieldset class="cf bn ma0 pa0">
-    <legend class="pa0 f5 f4-ns mb3">Enter the podcast feed</legend>
+    <legend class="pa0 f5 f4-ns mb3">Enter your Podcast Feed</legend>
     <div class="cf">
       <label class="clip" for="feed_url">podcast feed URL</label>
       <input class="f6 f5-l input-reset bn fl black-80 bg-white pa3 lh-solid w-100 w-75-m w-80-l br2-ns br--left-ns" placeholder="podcast feed URL" type="text" name="feed_url" value="" id="feed_url" />
