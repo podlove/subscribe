@@ -42,7 +42,6 @@ defmodule Subscribe.Core.Podcast do
   def refresh_data(podcast = %Podcast{feed: feed}) do
     case Subscribe.Core.FeedFetcher.fetch(feed) do
       {:ok, xml, _headers} ->
-        Subscribe.Core.FeedFetcher.fetch(feed)
         fields = Subscribe.FeedParser.parse(xml)
 
         {:ok, podcast} =
