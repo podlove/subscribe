@@ -1,7 +1,7 @@
 <article class="mw6 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10">
   <div class="tc">
     <h1 class="f3 lh-copy mb0"><%= @podcast.title %></h1>
-    <a href="<%= @podcast.homepage_url %>" class="link underline blue hover-green f7"><%= @podcast.homepage_url %></a>
+    <a href="<%= @podcast.homepage_url %>" class="link underline blue hover-green f7"><%= pretty_url(@podcast.homepage_url) %></a>
     <%= if @podcast.subtitle do %>
       <p class="lh-copy measure center f6 black-70">
         <%= @podcast.subtitle %>
