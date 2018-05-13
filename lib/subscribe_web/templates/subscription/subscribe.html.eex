@@ -13,7 +13,7 @@
     <script>
     window.podcastData = <%= raw Jason.encode!(@button_opts) %>
     </script>
-    <script class="podlove-subscribe-button" src="https://cdn.podlove.org/subscribe-button/javascripts/app.js" data-language="<%= @button_opts.language %>" data-size="big" data-format="cover" data-json-data="podcastData" data-buttonid="123abc"></script>
+    <script class="podlove-subscribe-button" src="https://cdn.podlove.org/subscribe-button/javascripts/app.js" data-language="<%= @button_opts.language %>" data-size="big" data-format="cover" data-json-data="podcastData"></script>
   </p>
   <hr class="mw3 bb bw1 b--black-10" />
   <%= if @podcast.description do %>
