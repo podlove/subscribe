@@ -58,11 +58,25 @@ defmodule SubscribeWeb.SubscriptionController do
         %{
           type: podcast.type,
           format: podcast.format,
-          url: podcast.feed
+          url: canonical_feed_url(podcast.feed)
         }
       ],
       language: language(podcast)
     }
+  end
+
+  def canonical_feed_url(url) when is_binary(url) do
+    url
+    |> URI.parse()
+    |> canonical_feed_url
+  end
+
+  def canonical_feed_url(%URI{path: path, host: nil}) do
+    canonical_feed_url("//#{path}")
+  end
+
+  def canonical_feed_url(uri = %URI{}) do
+    URI.to_string(uri)
   end
 
   defp language(%{language: language}) do
