@@ -43,7 +43,9 @@ defmodule Subscribe.Mixfile do
       {:cowboy, "~> 1.0"},
       {:httpoison, "~> 1.1"},
       {:sweet_xml, "~> 0.6.5"},
-      {:jason, "~> 1.0"}
+      {:jason, "~> 1.0"},
+      {:edeliver, "~> 1.5"},
+      {:distillery, "~> 1.5", runtime: false}
     ]
   end
 
