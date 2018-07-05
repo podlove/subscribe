@@ -1,12 +1,17 @@
 APP="subscribe"
 
-BUILD_HOST="elixir.podlove.org"
+BUILD_HOST="metalixir"
 BUILD_USER="dev"
 BUILD_AT="/tmp/edeliver/subscribe/builds"
 
-STAGING_HOSTS="elixir.podlove.org"
+STAGING_HOSTS="metalixir"
 STAGING_USER="dev"
 DELIVER_TO="/home/dev/subscribe"
+
+PRODUCTION_HOSTS="metalixir" 
+PRODUCTION_USER="dev" 
+DELIVER_TO="/home/dev/subscribe" 
+RELEASE_DIR="/tmp/edeliver/subscribe/builds/_build/prod/rel/subscribe/" 
 
 # For *Phoenix* projects, symlink prod.secret.exs to our tmp source
 pre_erlang_get_and_update_deps() {

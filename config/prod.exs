@@ -15,7 +15,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :subscribe, SubscribeWeb.Endpoint,
   http: [port: 4000],
-  load_from_system_env: true,
+  load_from_system_env: false,
   url: [host: "10.0.0.14", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json",
   server: true,
