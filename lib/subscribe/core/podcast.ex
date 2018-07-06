@@ -4,6 +4,8 @@ defmodule Subscribe.Core.Podcast do
   alias Subscribe.Core
   alias Subscribe.Core.Podcast
 
+  require Logger
+
   schema "podcasts" do
     field(:cover_url, :string)
     field(:description, :string)
@@ -58,7 +60,8 @@ defmodule Subscribe.Core.Podcast do
 
         podcast
 
-      {:error, _reason} ->
+      {:error, reason} ->
+        Logger.info("Could not fetch feed #{feed}. Reason: #{reason}")
         Core.delete_podcast(podcast)
 
         :notfound
