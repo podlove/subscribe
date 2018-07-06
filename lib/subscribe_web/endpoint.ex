@@ -11,7 +11,7 @@ defmodule SubscribeWeb.Endpoint do
     Plug.Static,
     at: "/",
     from: :subscribe,
-    gzip: false,
+    gzip: Application.get_env(:subscribe, :gzip_static, false),
     only: ~w(css fonts images js browserconfig.xml robots.txt favicon site.webmanifest)
   )
 
