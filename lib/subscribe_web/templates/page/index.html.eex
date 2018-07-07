@@ -1,7 +1,5 @@
-
 <form class="bg-near-white near-black mw7 center pa4 ma1 ma5-ns mb3 mb3-ns br2-ns ba b--black-10">
   <header class="dt mw6 center pt0 pv3 pb4-ns">
-
       <div class="db dtc-ns v-mid-ns">
         <img src="/images/podlove-icon.svg" width="50" class="w-100 mw3 w3-ns mr3-ns" />
       </div>
@@ -15,16 +13,10 @@
           </h3>
         </p>
       </div>
-
   </header>
-  <fieldset class="cf bn ma0 pa0">
-    <legend class="pa0 f5 f4-ns mb3">Enter your Podcast Feed</legend>
-    <div class="cf">
-      <label class="clip" for="feed_url">podcast feed URL</label>
-      <input class="f6 f5-l input-reset bn fl black-80 bg-white pa3 lh-solid w-100 w-75-m w-80-l br2-ns br--left-ns" placeholder="podcast feed URL" type="text" name="feed_url" value="" id="feed_url" />
-      <input class="f6 f5-l button-reset fl pv3 tc bn bg-animate bg-black-70 hover-bg-black white pointer w-100 w-25-m w-20-l br2-ns br--right-ns" type="submit" value="Generate" />
-    </div>
-  </fieldset>
+
+  <%= render "form.html" %>
+
 </form>
 
 <div class="mw7 center white pt1 lh-copy f6">
