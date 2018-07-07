@@ -18,8 +18,8 @@ defmodule SubscribeWeb.Router do
     pipe_through(:browser)
 
     get("/", PageController, :index)
-    get("/subscribe/config/*feed_url", SubscriptionController, :config)
-    get("/subscribe/*feed_url", SubscriptionController, :subscribe)
+    get("/config/*feed_url", SubscriptionController, :config)
+    get("/*feed_url", SubscriptionController, :subscribe)
   end
 
   # Other scopes may use custom stacks.
