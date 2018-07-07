@@ -2,8 +2,13 @@ defmodule Subscribe.FeedParser do
   import SweetXml, except: [parse: 1, parse: 2]
 
   def parse(xml) do
-    with channel <- xpath(xml, ~x"//channel"e) do
-      podcast_fields(channel)
+    try do
+      with channel <- xpath(xml, ~x"//channel"e) do
+        {:ok, podcast_fields(channel)}
+      end
+    catch
+      :exit, e ->
+        {:error, :no_valid_feed}
     end
   end
 

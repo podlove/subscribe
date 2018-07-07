@@ -42,28 +42,30 @@ defmodule Subscribe.Core.Podcast do
   end
 
   def refresh_data(podcast = %Podcast{feed: feed}) do
-    case Subscribe.Core.FeedFetcher.fetch(feed) do
-      {:ok, xml, _headers} ->
-        fields = Subscribe.FeedParser.parse(xml)
+    with {:ok, xml, _headers} <- Subscribe.Core.FeedFetcher.fetch(feed),
+         {:ok, fields} <- Subscribe.FeedParser.parse(xml) do
+      {:ok, podcast} =
+        Core.update_podcast(podcast, %{
+          title: fields.title,
+          subtitle: fields.itunes_subtitle,
+          description: fields.itunes_summary,
+          cover_url: fields.image,
+          type: "audio",
+          format: "mp3",
+          homepage_url: fields.link,
+          language: fields.language
+        })
 
-        {:ok, podcast} =
-          Core.update_podcast(podcast, %{
-            title: fields.title,
-            subtitle: fields.itunes_subtitle,
-            description: fields.itunes_summary,
-            cover_url: fields.image,
-            type: "audio",
-            format: "mp3",
-            homepage_url: fields.link,
-            language: fields.language
-          })
-
-        podcast
+      podcast
+    else
+      {:error, :no_valid_feed} ->
+        Logger.info("Could not fetch feed #{feed}. Reason: Not a valid feed")
+        Core.delete_podcast(podcast)
+        :notfound
 
       {:error, reason} ->
-        Logger.info("Could not fetch feed #{feed}. Reason: #{reason}")
+        Logger.info("Could not fetch feed #{feed}. Reason: #{inspect(reason)}")
         Core.delete_podcast(podcast)
-
         :notfound
     end
   end
