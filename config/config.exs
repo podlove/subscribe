@@ -22,7 +22,8 @@ config :logger, :console,
   metadata: [:user_id]
 
 config :subscribe,
-  gzip_static: false
+  gzip_static: false,
+  image_path: "/tmp/subscribe/image"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

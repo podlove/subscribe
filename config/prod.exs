@@ -27,7 +27,8 @@ config :subscribe, SubscribeWeb.Endpoint,
 config :logger, level: :info
 
 config :subscribe,
-  gzip_static: true
+  gzip_static: true,
+  image_path: "/home/dev/subscribe/images"
 
 # ## SSL Support
 #
