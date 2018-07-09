@@ -6,14 +6,15 @@ defmodule SubscribeWeb.SubscriptionController do
   import Subscribe.Core.Feed, only: [url_from_components: 2]
 
   def subscribe(conn, params) do
-    podcast = get_podcast(params)
+    feed_url = get_feed_url(params)
+    podcast = get_podcast(feed_url)
 
     case podcast.podcast do
       %Podcast{} ->
         render(conn, "subscribe.html", podcast: podcast.podcast, button_opts: podcast.button_opts)
 
       _ ->
-        render(conn, "error.html")
+        render(conn, "error.html", url: feed_url)
     end
   end
 
@@ -22,10 +23,12 @@ defmodule SubscribeWeb.SubscriptionController do
     render(conn, "config.json", button_opts: podcast.button_opts)
   end
 
-  defp get_podcast(params = %{"feed_url" => feed_components}) do
+  def get_feed_url(params = %{"feed_url" => feed_components}) do
     feed_params = Map.delete(params, "feed_url")
-    feed_url = url_from_components(feed_components, feed_params)
+    url_from_components(feed_components, feed_params)
+  end
 
+  defp get_podcast(feed_url) do
     podcast = fetch_podcast(feed_url) || init_podcast(feed_url)
 
     %{

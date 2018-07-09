@@ -4,7 +4,9 @@
     <h1 class="f3 lh-copy mb0">Sorry :(</h1>
     <hr class="mw3 bb bw1 b--black-10" />
     <p class="lh-copy measure center f6 black-70">
-      This does not seem to be a valid podcast. Try a different URL?
+      It looks like <code><%= @url %></code> is not a podcast feed.
+      <br />
+      Try a different URL?
     </p>
   </div>
   <%= render SubscribeWeb.PageView, "form.html" %>
