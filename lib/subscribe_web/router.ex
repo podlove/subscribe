@@ -18,6 +18,7 @@ defmodule SubscribeWeb.Router do
     pipe_through(:browser)
 
     get("/", PageController, :index)
+    get("/img/:hash/:size", ImageController, :index)
     get("/config/*feed_url", SubscriptionController, :config)
     get("/*feed_url", SubscriptionController, :subscribe)
   end

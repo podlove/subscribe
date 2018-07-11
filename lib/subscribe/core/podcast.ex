@@ -2,7 +2,7 @@ defmodule Subscribe.Core.Podcast do
   use Ecto.Schema
   import Ecto.Changeset
   alias Subscribe.Core
-  alias Subscribe.Core.Podcast
+  alias Subscribe.Core.{ImageUpdater, Podcast}
 
   require Logger
 
@@ -39,6 +39,21 @@ defmodule Subscribe.Core.Podcast do
     ])
     |> validate_required([:feed])
     |> unique_constraint(:feed)
+    |> upadte_image_cache_on_cover_change()
+  end
+
+  def upadte_image_cache_on_cover_change(changeset) do
+    set_image_cache(changeset, get_change(changeset, :cover_url))
+  end
+
+  defp set_image_cache(changeset, nil) do
+    changeset
+  end
+
+  defp set_image_cache(changeset, new_cover_url) do
+    ImageUpdater.fetch_url(new_cover_url)
+
+    changeset
   end
 
   def refresh_data(podcast = %Podcast{feed: feed}) do

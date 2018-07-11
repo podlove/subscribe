@@ -21,6 +21,12 @@ defmodule Subscribe.Core do
     Repo.all(Podcast)
   end
 
+  def list_podcast_covers do
+    from(p in Podcast, select: p.cover_url, distinct: true)
+    |> Repo.all()
+    |> Enum.filter(fn x -> not is_nil(x) end)
+  end
+
   @doc """
   Gets a single podcast.
 

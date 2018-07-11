@@ -3,6 +3,8 @@ defmodule SubscribeWeb.SubscriptionController do
   alias Subscribe.Repo
   alias Subscribe.Core
   alias Subscribe.Core.Podcast
+  alias Subscribe.Core.Image
+
   import Subscribe.Core.Feed, only: [url_from_components: 2]
 
   def subscribe(conn, params) do
@@ -52,11 +54,21 @@ defmodule SubscribeWeb.SubscriptionController do
   end
 
   defp button_opts(%Podcast{} = podcast) do
+    image = Image.create_from_url(podcast.cover_url)
+    size = "540x540"
+
+    cover_url =
+      if File.exists?(Image.thumbnail_path(image, size)) do
+        Image.thumbnail_url(image, size)
+      else
+        podcast.cover_url
+      end
+
     %{
       title: podcast.title,
       subtitle: podcast.subtitle,
       description: podcast.description,
-      cover: podcast.cover_url,
+      cover: cover_url,
       feeds: [
         %{
           type: podcast.type,

@@ -45,7 +45,8 @@ defmodule Subscribe.Mixfile do
       {:sweet_xml, "~> 0.6.5"},
       {:jason, "~> 1.0"},
       {:edeliver, "~> 1.5"},
-      {:distillery, "~> 1.5", runtime: false}
+      {:distillery, "~> 1.5", runtime: false},
+      {:mogrify, "~> 0.6.1"}
     ]
   end
 
