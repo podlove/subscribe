@@ -13,6 +13,9 @@ PRODUCTION_USER="dev"
 DELIVER_TO="/home/dev/subscribe" 
 RELEASE_DIR="/tmp/edeliver/subscribe/builds/_build/prod/rel/subscribe/" 
 
+# faster builds
+GIT_CLEAN_PATHS="_build rel priv/static"
+
 # For *Phoenix* projects, symlink prod.secret.exs to our tmp source
 pre_erlang_get_and_update_deps() {
   local _prod_secret_path="/home/dev/prod.secret.exs"
