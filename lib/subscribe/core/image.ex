@@ -28,7 +28,7 @@ defmodule Subscribe.Core.Image do
 
   def download(image) do
     File.mkdir_p(image_directory(image))
-    %HTTPoison.Response{body: body} = HTTPoison.get!(image.url, [], follow_redirect: true)
+    %HTTPoison.Response{body: body} = HTTPoison.get!(image.url, [], download_options())
     File.write!(original_path(image), body)
 
     File.write!(
@@ -40,6 +40,14 @@ defmodule Subscribe.Core.Image do
     )
 
     image
+  end
+
+  defp download_options do
+    [
+      follow_redirect: true,
+      # apparently to work around an Erlang 19 related SSL issue, see HTTPoison docs if it's resolved
+      ssl: [{:versions, [:"tlsv1.2"]}]
+    ]
   end
 
   def generate_thumbnail(image, size \\ "180x180") do
