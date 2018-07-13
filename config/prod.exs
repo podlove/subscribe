@@ -16,7 +16,7 @@ use Mix.Config
 config :subscribe, SubscribeWeb.Endpoint,
   http: [port: 4000],
   load_from_system_env: false,
-  url: [host: "subscribe.podlove.org", port: 80, scheme: "https"],
+  url: [host: "subscribe.podlove.org", port: 443, scheme: "https"],
   cache_static_manifest: "priv/static/cache_manifest.json",
   server: true,
   root: ".",
