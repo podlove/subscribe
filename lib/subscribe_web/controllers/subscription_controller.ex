@@ -80,17 +80,21 @@ defmodule SubscribeWeb.SubscriptionController do
     }
   end
 
-  def canonical_feed_url(url) when is_binary(url) do
+  defp button_opts(_) do
+    %{}
+  end
+
+  defp canonical_feed_url(url) when is_binary(url) do
     url
     |> URI.parse()
     |> canonical_feed_url
   end
 
-  def canonical_feed_url(%URI{path: path, host: nil}) do
+  defp canonical_feed_url(%URI{path: path, host: nil}) do
     canonical_feed_url("//#{path}")
   end
 
-  def canonical_feed_url(uri = %URI{}) do
+  defp canonical_feed_url(uri = %URI{}) do
     URI.to_string(uri)
   end
 
@@ -101,8 +105,4 @@ defmodule SubscribeWeb.SubscriptionController do
   end
 
   defp language(_), do: "en"
-
-  defp button_opts(_) do
-    %{}
-  end
 end

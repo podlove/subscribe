@@ -7,7 +7,7 @@ defmodule Subscribe.FeedParser do
         {:ok, podcast_fields(channel)}
       end
     catch
-      :exit, e ->
+      :exit, _e ->
         {:error, :no_valid_feed}
     end
   end
