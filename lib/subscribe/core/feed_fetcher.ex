@@ -26,7 +26,10 @@ defmodule Subscribe.Core.FeedFetcher do
   def options do
     [
       follow_redirect: true,
-      ssl: [{:versions, [:"tlsv1.2"]}]
+      max_redirect: 10,
+      ssl: [{:versions, [:"tlsv1.2"]}],
+      timeout: 10_000,
+      recv_timeout: 10_000
     ]
   end
 end
