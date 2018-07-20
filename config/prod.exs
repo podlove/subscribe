@@ -36,9 +36,7 @@ config :subscribe, Subscribe.Scheduler,
     update_podcasts: [
       # hourly
       schedule: "0 * * * *",
-      task: fn ->
-        Subscribe.Core.PodcastUpdater.update_podcasts()
-      end,
+      task: {Subscribe.Core.PodcastUpdater, :update_podcasts, []},
       overlap: false,
       # Run job on local node
       run_strategy: Quantum.RunStrategy.Local
