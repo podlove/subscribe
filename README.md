@@ -1,4 +1,4 @@
-    # Subscribe
+# Subscribe
 
 ![screenshot](https://user-images.githubusercontent.com/235918/39969659-6ba337e4-56df-11e8-89d9-67fd743c46b1.png)
 
