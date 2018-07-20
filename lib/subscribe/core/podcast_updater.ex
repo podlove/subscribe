@@ -33,7 +33,7 @@ defmodule Subscribe.Core.PodcastUpdater do
     time_stop = DateTime.utc_now()
     duration = DateTime.diff(time_stop, time_start)
 
-    Logger.info("Podcast update done in #{format_seconds(duration)}")
+    Logger.info("Updated #{total} podcasts in #{format_seconds(duration)}")
 
     {:noreply, state}
   end
