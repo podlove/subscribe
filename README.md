@@ -1,4 +1,4 @@
-# Subscribe
+    # Subscribe
 
 ![screenshot](https://user-images.githubusercontent.com/235918/39969659-6ba337e4-56df-11e8-89d9-67fd743c46b1.png)
 
@@ -18,5 +18,5 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 ## Example URLs
 
- * share page: /subscribe/freakshow.fm/feed/m4a 
- * button config: /subscribe/config/freakshow.fm/feed/m4a 
+ * share page: /freakshow.fm/feed/m4a 
+ * button config: /config/freakshow.fm/feed/m4a 

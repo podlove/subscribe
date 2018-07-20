@@ -14,7 +14,10 @@ defmodule Subscribe.Application do
       supervisor(SubscribeWeb.Endpoint, []),
       # Start your own worker by calling: Subscribe.Worker.start_link(arg1, arg2, arg3)
       # worker(Subscribe.Worker, [arg1, arg2, arg3]),
-      worker(Subscribe.Core.ImageUpdater, [])
+      worker(Subscribe.Core.ImageUpdater, []),
+      worker(Subscribe.Core.PodcastUpdater, []),
+      worker(Subscribe.Core.PodcastUpdaterProgress, []),
+      worker(Subscribe.Scheduler, [])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

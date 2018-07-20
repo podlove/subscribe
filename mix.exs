@@ -46,7 +46,9 @@ defmodule Subscribe.Mixfile do
       {:jason, "~> 1.0"},
       {:edeliver, "~> 1.5"},
       {:distillery, "~> 1.5", runtime: false},
-      {:mogrify, "~> 0.6.1"}
+      {:mogrify, "~> 0.6.1"},
+      {:progress_bar, "~> 1.6"},
+      {:quantum, "~> 2.2"}
     ]
   end
 

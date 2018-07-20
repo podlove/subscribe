@@ -30,6 +30,21 @@ config :subscribe,
   gzip_static: true,
   image_path: "/home/dev/subscribe/images"
 
+config :subscribe, Subscribe.Scheduler,
+  global: true,
+  jobs: [
+    update_podcasts: [
+      # hourly
+      schedule: "0 * * * *",
+      task: fn ->
+        Subscribe.Core.PodcastUpdater.update_podcasts()
+      end,
+      overlap: false,
+      # Run job on local node
+      run_strategy: Quantum.RunStrategy.Local
+    ]
+  ]
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
