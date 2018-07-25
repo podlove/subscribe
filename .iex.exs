@@ -30,8 +30,10 @@ IEx.configure(
 
 import Ecto.Query, warn: false
 
-alias Subscribe.Core.PodcastUpdater
-alias Subscribe.Core.PodcastUpdaterProgress
+alias Subscribe.Repo
+alias Subscribe.FeedParser
+alias Subscribe.Core.{Episode, Podcast, FeedFetcher, PodcastUpdaterProgress, PodcastUpdater}
 
 IO.puts("Useful commands:")
 IO.puts("  PodcastUpdater.update_podcasts()")
+IO.puts("  Subscribe.Repo.get(Podcast, 1) |> Podcast.refresh_data()")

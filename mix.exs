@@ -20,7 +20,7 @@ defmodule Subscribe.Mixfile do
   def application do
     [
       mod: {Subscribe.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :timex]
     ]
   end
 
@@ -48,7 +48,9 @@ defmodule Subscribe.Mixfile do
       {:distillery, "~> 1.5", runtime: false},
       {:mogrify, "~> 0.6.1"},
       {:progress_bar, "~> 1.6"},
-      {:quantum, "~> 2.2"}
+      {:quantum, "~> 2.2"},
+      {:timex, "~> 3.3"},
+      {:timex_ecto, "~> 3.3"}
     ]
   end
 

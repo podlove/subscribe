@@ -3,8 +3,11 @@ defmodule Subscribe.FeedParser do
 
   def parse(xml) do
     try do
-      with channel <- xpath(xml, ~x"//channel"e) do
-        {:ok, podcast_fields(channel)}
+      with channel <- xpath(xml, ~x"//channel"e),
+           items <- xpath(channel, ~x"item"el),
+           podcast_fields <- podcast_fields(channel),
+           item_fields <- Enum.map(items, &episode_fields/1) do
+        {:ok, podcast_fields, item_fields}
       end
     catch
       :exit, _e ->
@@ -26,5 +29,27 @@ defmodule Subscribe.FeedParser do
       itunes_owner_name: xpath(channel, ~x"itunes:owner/itunes:name/text()"s),
       image: xpath(channel, ~x"itunes:image/@href"s)
     }
+  end
+
+  def episode_fields(item) do
+    %{
+      title: xpath(item, ~x"title/text()"s),
+      guid: xpath(item, ~x"guid/text()"s),
+      description: xpath(item, ~x"description/text()"s),
+      duration: xpath(item, ~x"itunes:duration/text()"s),
+      itunes_summary: xpath(item, ~x"itunes:summary/text()"s),
+      itunes_subtitle: xpath(item, ~x"itunes:subtitle/text()"s),
+      enclosure_url: xpath(item, ~x"enclosure/@url"s),
+      enclosure_type: xpath(item, ~x"enclosure/@type"s),
+      enclosure_length: xpath(item, ~x"enclosure/@length"i),
+      publication_date: date_time(xpath(item, ~x"pubDate/text()"s)),
+      image: xpath(item, ~x"itunes:image/@href"s)
+    }
+  end
+
+  # fixme: very naive. works with Publisher but must be tolerant of whatever formats
+  def date_time(timestring) do
+    timestring
+    |> Timex.parse!("{RFC1123}")
   end
 end
