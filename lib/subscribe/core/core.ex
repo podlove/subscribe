@@ -143,7 +143,6 @@ defmodule Subscribe.Core do
   Creates an episode.
   """
   def create_episode(%Podcast{} = podcast, attrs \\ %{}) do
-    result =
       %Episode{}
       |> Episode.changeset(attrs)
       |> Ecto.Changeset.put_assoc(:podcast, podcast)
