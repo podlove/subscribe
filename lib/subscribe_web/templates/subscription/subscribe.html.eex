@@ -1,29 +1,51 @@
-<article class="mw6 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10">
-  <div class="tc">
-    <h1 class="f3 lh-copy mb0"><%= @podcast.title %></h1>
-    <a href="<%= @podcast.homepage_url %>" class="link underline blue hover-green f7"><%= pretty_url(@podcast.homepage_url) %></a>
+<article class="br2 bg-white b--black-10 mv4 w-100 mw6 center shadow-5">
+  <img src="<%= @podcast.cover_url %>" class="db w-100 br2 br--top" alt="Photo of a kitten looking menacing.">
+  <div class="pa4">
+    <div class="dt w-100 mt1">
+      <div class="dtc">
+        <div class="mv0">
+          <script>
+          window.podcastData = <%= raw Jason.encode!(@button_opts) %>
+          </script>
+          <script class="podlove-subscribe-button" src="https://cdn.podlove.org/subscribe-button/javascripts/app.js" data-color="<%= @main_color %>" data-language="<%= @button_opts.language %>" data-size="big" data-format="rectangle" data-json-data="podcastData"></script>
+        </div>
+      </div>
+      <div class="dtc tr v-top">
+        <div class="mv0">
+          <span style="height: 54px; line-height: 54px">Embed / Share Icons</span> 
+        </div>
+      </div>
+    </div>
+    <h1 class="f3 lh-copy mb0 black-70"><%= @podcast.title %></h1>
     <%= if @podcast.subtitle do %>
-      <p class="lh-copy measure center f6 black-70">
+      <p class="lh-copy measure f5 black-70">
         <%= @podcast.subtitle %>
       </p>
     <% end %>
-    <hr class="mw3 bb bw1 b--black-10" />
+    <%= if @podcast.description do %>
+      <p class="lh-copy measure f5 black-70">
+        <%= @podcast.description %>
+      </p>
+    <% end %>
+    <a href="<%= @podcast.homepage_url %>" class="link underline blue hover-green f5"><%= pretty_url(@podcast.homepage_url) %></a>
+    <!--
+    <div class="mb4 mt3">
+    <%= for color <- @colors do %>
+      <div class="mr2" style="width: 25px; height: 25px; float: left; background-color: <%= color %>;"></div>
+    <% end %>
+    </div>
+    -->
   </div>
-  <p class="tc lh-copy measure center f6 black-70">
-    <script>
-    window.podcastData = <%= raw Jason.encode!(@button_opts) %>
-    </script>
-    <script class="podlove-subscribe-button" src="https://cdn.podlove.org/subscribe-button/javascripts/app.js" data-language="<%= @button_opts.language %>" data-size="big" data-format="cover" data-json-data="podcastData"></script>
-  </p>
-  <hr class="mw3 bb bw1 b--black-10" />
-  <%= if @podcast.description do %>
-    <p class="lh-copy measure center f6 black-70">
-      <%= @podcast.description %>
-    </p>
-  <% end %>
 </article>
 
-<div class="mw6 center">
-  <%= render SubscribeWeb.PageView, "_footer.html" %>
-</div>
+<style>
+body {
+  /** background: linear-gradient(to right, rgba(235, 204, 124, 1.000), rgba(208, 183, 121, 1.000)); **/
+  background: linear-gradient(to right, <%= @gradient.from %>, <%= @gradient.to %>);;
+}
+</style>
+
+
+<%= render SubscribeWeb.PageView, "_footer.html" %>
+
 

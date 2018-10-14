@@ -19,6 +19,4 @@
 
 </form>
 
-<div class="mw7 center">
-  <%= render "_footer.html" %>
-</div>
+<%= render "_footer.html" %>

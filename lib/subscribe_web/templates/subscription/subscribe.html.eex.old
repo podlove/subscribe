@@ -1,0 +1,29 @@
+<article class="mw6 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10">
+  <div class="tc">
+    <h1 class="f3 lh-copy mb0"><%= @podcast.title %></h1>
+    <a href="<%= @podcast.homepage_url %>" class="link underline blue hover-green f7"><%= pretty_url(@podcast.homepage_url) %></a>
+    <%= if @podcast.subtitle do %>
+      <p class="lh-copy measure center f6 black-70">
+        <%= @podcast.subtitle %>
+      </p>
+    <% end %>
+    <hr class="mw3 bb bw1 b--black-10" />
+  </div>
+  <p class="tc lh-copy measure center f6 black-70">
+    <script>
+    window.podcastData = <%= raw Jason.encode!(@button_opts) %>
+    </script>
+    <script class="podlove-subscribe-button" src="https://cdn.podlove.org/subscribe-button/javascripts/app.js" data-language="<%= @button_opts.language %>" data-size="big" data-format="cover" data-json-data="podcastData"></script>
+  </p>
+  <hr class="mw3 bb bw1 b--black-10" />
+  <%= if @podcast.description do %>
+    <p class="lh-copy measure center f6 black-70">
+      <%= @podcast.description %>
+    </p>
+  <% end %>
+</article>
+
+<div class="mw6 center">
+  <%= render SubscribeWeb.PageView, "_footer.html" %>
+</div>
+

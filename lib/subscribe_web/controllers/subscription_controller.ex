@@ -13,7 +13,37 @@ defmodule SubscribeWeb.SubscriptionController do
 
     case podcast.podcast do
       %Podcast{} ->
-        render(conn, "subscribe.html", podcast: podcast.podcast, button_opts: podcast.button_opts)
+        colors = dominant_colors(podcast.podcast)
+
+        main_color =
+          with color when not is_nil(color) <- List.first(colors) do
+            color
+          else
+            _ -> "rgb(0,0,0)"
+          end
+
+        gradient =
+          with color when not is_nil(color) <- List.first(colors),
+               {:ok, main_color} <- color |> CssColors.parse() do
+            %{
+              from: main_color |> to_string(),
+              to: CssColors.darken(main_color, 0.1) |> to_string()
+            }
+          else
+            _ ->
+              %{
+                from: "rgb(0,0,0)",
+                to: "rgb(25,25,25)"
+              }
+          end
+
+        render(conn, "subscribe.html",
+          podcast: podcast.podcast,
+          button_opts: podcast.button_opts,
+          colors: colors,
+          gradient: gradient,
+          main_color: main_color
+        )
 
       _ ->
         render(conn, "error.html", url: feed_url)
@@ -50,6 +80,21 @@ defmodule SubscribeWeb.SubscriptionController do
 
       {:error, %Ecto.Changeset{}} ->
         nil
+    end
+  end
+
+  def dominant_colors(%Podcast{} = podcast) do
+    image = Image.create_from_url(podcast.cover_url)
+    size = "540x540"
+    path = Image.thumbnail_path(image, size)
+
+    if File.exists?(path) do
+      path
+      |> OcvPhotoAnalyzer.analyze([:dominant])
+      |> Map.get(:dominant)
+      |> Enum.map(fn c -> "rgb(#{c.r}, #{c.g}, #{c.b})" end)
+    else
+      []
     end
   end
 

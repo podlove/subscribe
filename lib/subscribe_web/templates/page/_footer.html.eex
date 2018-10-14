@@ -1,10 +1,20 @@
-<div class="white pt1 lh-copy f6">
-  <a class="no-underline near-white bg-animate bg-near-black hover-bg-mid-gray  inline-flex items-center m12 tc br2 pa1" href="https://podlove.org" target="_blank" title="Podlove">
-    <img src="/images/podlove-icon-white.svg" class="dib h2 w2"/>
-    <span class="f6 ml1 pr2">Powered by Podlove</span>
-  </a>
-  <a class="no-underline near-white bg-animate bg-near-black hover-bg-mid-gray inline-flex items-center m12 tc br2 pa1" href="https://github.com/podlove/subscribe" title="Code on GitHub">
-    <img src="/images/GitHub-Mark-Light-64px.png" class="dib h2 w2"/>
-    <span class="f6 ml2 pr2">Open Source</span>
-  </a>
-</div>  
+<div class="mt6 center">
+  <div class="bg-white pt1 lh-copy f6 flex justify-center pv4">
+    
+    <a class="no-underline near-black bg-animate inline-flex items-center ph3" href="/" title="Podlove">
+      <img src="/images/podlove-subscribe-button-icon.svg" class=" h2 w2"/>
+      <span class="f6 ml1 pr2">Get your Podcast Subscribe Site</span>
+    </a>
+    
+    <a class="no-underline near-black bg-animate inline-flex items-center ph3" href="https://podlove.org" target="_blank" title="Podlove">
+      <img src="/images/podlove-icon.svg" class=" h2 w2"/>
+      <span class="f6 ml1 pr2">Powered by Podlove</span>
+    </a>
+    
+    <a class="no-underline near-black bg-animate inline-flex items-center ph3" href="https://github.com/podlove/subscribe" title="Code on GitHub">
+      <img src="/images/GitHub-Mark-64px.png" class=" h2 w2"/>
+      <span class="f6 ml2 pr2">Open Source</span>
+    </a>
+
+  </div>  
+</div>

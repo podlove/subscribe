@@ -50,7 +50,9 @@ defmodule Subscribe.Mixfile do
       {:progress_bar, "~> 1.6"},
       {:quantum, "~> 2.2"},
       {:timex, "~> 3.3"},
-      {:timex_ecto, "~> 3.3"}
+      {:timex_ecto, "~> 3.3"},
+      {:ocv_photo_analyzer, "~> 1.0"},
+      {:css_colors, "~> 0.2.1"}
     ]
   end
 
