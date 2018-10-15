@@ -19,3 +19,27 @@
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+
+import ClipboardJS from "clipboard"
+
+let clipboard = new ClipboardJS(".copy-btn")
+
+clipboard.on('success', function (e) {
+
+  const prevClass = e.trigger.className
+
+  let timeoutId = null
+  let resetClass = () => {
+    e.trigger.className = prevClass
+    if (timeoutId) {
+      window.clearTimeout(timeoutId)
+    }
+  }
+
+  e.trigger.className += " tooltipped tooltipped-no-delay tooltipped-s"
+
+  timeoutId = window.setTimeout(resetClass, 3000)
+  e.trigger.addEventListener('mouseout', resetClass)
+
+  e.clearSelection()
+})

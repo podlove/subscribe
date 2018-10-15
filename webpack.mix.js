@@ -13,7 +13,9 @@ let mix = require('laravel-mix');
 
 mix
   .js('assets/js/app.js', 'priv/static/js')
-  .sass('assets/css/app.scss', 'priv/static/css')
+  .sass('assets/css/app.scss', 'priv/static/css', {
+    includePaths: ['node_modules']
+  })
   .setPublicPath('priv/static/')
 
 // Full API

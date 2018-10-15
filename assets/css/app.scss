@@ -1,1 +1,29 @@
- @import "node_modules/tachyons-sass/tachyons.scss";
+@import "tachyons-sass/tachyons.scss";
+
+@import "primer-tooltips/index.scss";
+
+.tooltipped::after {
+  font-size: 1rem;
+}
+
+.svg-icon {
+  width: 36px;
+  height: 36px;
+  position: relative;
+  top: 9px;
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: rgba(0, 0, 0, 0.7);
+}
+
+// .svg-icon circle {
+//   stroke: #4691f6;
+//   stroke-width: 1;
+// }
+
+.copy-btn {
+  cursor: pointer
+}
