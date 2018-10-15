@@ -4,6 +4,7 @@ defmodule SubscribeWeb.SubscriptionController do
   alias Subscribe.Core
   alias Subscribe.Core.Podcast
   alias Subscribe.Core.Image
+  alias Subscribe.Colors
 
   import Subscribe.Core.Feed, only: [url_from_components: 2]
 
@@ -13,18 +14,18 @@ defmodule SubscribeWeb.SubscriptionController do
 
     case podcast.podcast do
       %Podcast{} ->
-        colors = dominant_colors(podcast.podcast)
+        %Colors{dominant: colors, main: main_color, dark: dark_color} =
+          podcast.podcast
+          |> Colors.from_podcast()
+          |> Colors.remove_blacks_and_whites()
+          |> Colors.determine_main_color()
+          |> Colors.determine_dark_color()
 
-        main_color =
-          with color when not is_nil(color) <- List.first(colors) do
-            color
-          else
-            _ -> "rgb(0,0,0)"
-          end
+        main_color = Colors.to_rgb(main_color)
+        dark_color = Colors.to_rgb(dark_color)
 
         gradient =
-          with color when not is_nil(color) <- List.first(colors),
-               {:ok, main_color} <- color |> CssColors.parse() do
+          with {:ok, main_color} <- main_color |> CssColors.parse() do
             %{
               from: main_color |> to_string(),
               to: CssColors.darken(main_color, 0.1) |> to_string()
@@ -40,9 +41,10 @@ defmodule SubscribeWeb.SubscriptionController do
         render(conn, "subscribe.html",
           podcast: podcast.podcast,
           button_opts: podcast.button_opts,
-          colors: colors,
+          colors: Colors.to_rgb(colors),
           gradient: gradient,
-          main_color: main_color
+          main_color: main_color,
+          dark_color: dark_color
         )
 
       _ ->
@@ -80,21 +82,6 @@ defmodule SubscribeWeb.SubscriptionController do
 
       {:error, %Ecto.Changeset{}} ->
         nil
-    end
-  end
-
-  def dominant_colors(%Podcast{} = podcast) do
-    image = Image.create_from_url(podcast.cover_url)
-    size = "540x540"
-    path = Image.thumbnail_path(image, size)
-
-    if File.exists?(path) do
-      path
-      |> OcvPhotoAnalyzer.analyze([:dominant])
-      |> Map.get(:dominant)
-      |> Enum.map(fn c -> "rgb(#{c.r}, #{c.g}, #{c.b})" end)
-    else
-      []
     end
   end
 

@@ -12,7 +12,7 @@
       </div>
       <div class="dtc tr v-top">
         <div class="mv0">
-          <span style="height: 54px; line-height: 54px">Embed / Share Icons</span> 
+          <span style="height: 54px; line-height: 54px; font-weight: bold; color: <%= @dark_color %>">Embed / Share Icons</span> 
         </div>
       </div>
     </div>
@@ -28,20 +28,17 @@
       </p>
     <% end %>
     <a href="<%= @podcast.homepage_url %>" class="link underline blue hover-green f5"><%= pretty_url(@podcast.homepage_url) %></a>
-    <!--
     <div class="mb4 mt3">
     <%= for color <- @colors do %>
       <div class="mr2" style="width: 25px; height: 25px; float: left; background-color: <%= color %>;"></div>
     <% end %>
     </div>
-    -->
   </div>
 </article>
 
 <style>
 body {
-  /** background: linear-gradient(to right, rgba(235, 204, 124, 1.000), rgba(208, 183, 121, 1.000)); **/
-  background: linear-gradient(to right, <%= @gradient.from %>, <%= @gradient.to %>);;
+  background: linear-gradient(to right, <%= @gradient.from %>, <%= @gradient.to %>);
 }
 </style>
 

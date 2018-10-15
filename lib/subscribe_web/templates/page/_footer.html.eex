@@ -2,7 +2,7 @@
   <div class="bg-white pt1 lh-copy f6 flex justify-center pv4">
     
     <a class="no-underline near-black bg-animate inline-flex items-center ph3" href="/" title="Podlove">
-      <img src="/images/podlove-subscribe-button-icon.svg" class=" h2 w2"/>
+      <img src="/images/podlove-subscribe-button-icon.svg" class="h2 w2"/>
       <span class="f6 ml1 pr2">Get your Podcast Subscribe Site</span>
     </a>
     
