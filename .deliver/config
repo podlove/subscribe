@@ -36,10 +36,9 @@ pre_erlang_clean_compile() {
     cd '$BUILD_AT' # enter the build directory on the build host (required)
     # prepare something
     mkdir -p priv/static # required by the phoenix.digest task
-    cd '$BUILD_AT/assets'
+    cd '$BUILD_AT'
     npm install
-
-    ./node_modules/brunch/bin/brunch build --production
+    npm run production
 
     # run your custom task
     cd '$BUILD_AT'
