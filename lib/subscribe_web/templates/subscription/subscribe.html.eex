@@ -1,4 +1,4 @@
-<article class="br2 bg-white b--black-10 mv4 w-100 mw6 center shadow-5">
+<article class="br2 bg-white b--black-10 mv4-ns w-100 mw6 center shadow-5">
   <img src="<%= @podcast.cover_url %>" class="db w-100 br2 br--top" alt="Photo of a kitten looking menacing.">
   <div class="pa4">
     <div class="dt w-100 mt1">
