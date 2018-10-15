@@ -31,7 +31,7 @@
         <%= @podcast.description %>
       </p>
     <% end %>
-    <a href="<%= @podcast.homepage_url %>" class="link underline blue hover-green f5"><%= pretty_url(@podcast.homepage_url) %></a>
+    <a href="<%= @podcast.homepage_url %>" class="link underline f5"><%= pretty_url(@podcast.homepage_url) %></a>
     <div class="mb4 mt3">
     <%= for color <- @colors do %>
       <div class="mr2" style="width: 25px; height: 25px; float: left; background-color: <%= color %>;"></div>
@@ -49,6 +49,14 @@ body {
 .svg-icon polygon,
 .svg-icon rect {
   fill: <%= @dark_color %>;
+}
+
+.link {
+  color: <%= @dark_color %>;
+}
+
+.link:hover {
+  color: rgba(0,0,0,0.7);
 }
 </style>
 
