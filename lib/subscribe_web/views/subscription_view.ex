@@ -25,4 +25,12 @@ defmodule SubscribeWeb.SubscriptionView do
   def pretty_url(%URI{host: host, path: path}) do
     host <> path
   end
+
+  def twitter_share_url(url) do
+    "https://twitter.com/share?" <> URI.encode_query(%{url: url})
+  end
+
+  def facebook_share_url(url) do
+    "https://www.facebook.com/sharer/sharer.php?" <> URI.encode_query(%{u: url})
+  end
 end

@@ -11,12 +11,50 @@
         </div>
       </div>
       <div class="dtc tr v-top">
-        <div class="mv0">
-          <span class="copy-btn" aria-label="URL Copied!" data-clipboard-text="<%= subscription_url(@conn, :subscribe, [@podcast.feed]) %>" style="height: 54px; line-height: 54px; font-weight: bold; color: <%= @dark_color %>">
-            <svg class="svg-icon" viewBox="0 0 20 20">
-							<path fill="none" d="M19.175,4.856L15.138,0.82c-0.295-0.295-0.817-0.295-1.112,0L8.748,6.098c-0.307,0.307-0.307,0.805,0,1.112l1.462,1.462l-1.533,1.535L7.215,8.746c-0.307-0.307-0.805-0.307-1.112,0l-5.278,5.276c-0.307,0.307-0.307,0.805,0,1.112l4.037,4.037c0.154,0.153,0.355,0.23,0.556,0.23c0.201,0,0.403-0.077,0.556-0.23l5.28-5.276c0.148-0.148,0.23-0.347,0.23-0.556c0-0.209-0.083-0.409-0.23-0.556l-1.464-1.464l1.533-1.535l1.462,1.462c0.153,0.153,0.355,0.23,0.556,0.23c0.201,0,0.402-0.077,0.556-0.23l5.278-5.278c0.147-0.147,0.23-0.347,0.23-0.556C19.406,5.203,19.322,5.004,19.175,4.856zM9.585,13.339l-4.167,4.164l-2.925-2.925l4.166-4.164l0.906,0.905l-0.67,0.668c-0.307,0.307-0.307,0.805,0,1.112c0.154,0.153,0.356,0.23,0.556,0.23c0.203,0,0.403-0.077,0.556-0.23l0.67-0.668L9.585,13.339z M13.341,9.578l-0.906-0.906l0.663-0.662c0.307-0.307,0.307-0.805,0-1.112c-0.307-0.307-0.805-0.307-1.112,0L11.322,7.56l-0.906-0.906l4.166-4.166l2.925,2.925L13.341,9.578z"></path>
-						</svg>
-          </span> 
+        <div class="mv0" style="margin-top: 9px">
+
+          <style>
+          .feather {
+            width: 36px;
+            height: 36px;
+            stroke: <%= @dark_color %>;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+            margin-left: 12px;
+          }
+
+          .feather.filled {
+            fill: <%= @dark_color %>;
+            stroke-width: 0;
+          }
+          </style>
+
+          <span title="Copy Site URL" class="copy-btn" aria-label="Site URL Copied!" data-clipboard-text="<%= subscription_url(@conn, :subscribe, [@podcast.feed]) %>" style="height: 54px; line-height: 54px; font-weight: bold; color: <%= @dark_color %>">
+            <svg class="feather">
+              <use xlink:href="/images/feather-sprite.svg#link"/>
+            </svg>
+          </span>
+
+          <span title="Copy RSS Feed URL" class="copy-btn" aria-label="RSS Feed URL Copied!" data-clipboard-text="<%= @podcast.feed %>" style="height: 54px; line-height: 54px; font-weight: bold; color: <%= @dark_color %>">
+            <svg class="feather">
+              <use xlink:href="/images/feather-sprite.svg#rss"/>
+            </svg>
+          </span>
+
+          <a class="link" title="Share on Twitter" target="_blank" href="<%= twitter_share_url subscription_url(@conn, :subscribe, [@podcast.feed]) %>">
+            <svg class="feather filled">
+              <use xlink:href="/images/feather-sprite.svg#twitter"/>
+            </svg>
+          </a>
+
+          <a class="link" title="Share on Facebook" target="_blank" href="<%= facebook_share_url subscription_url(@conn, :subscribe, []) %>">
+            <svg class="feather filled" style="margin-left: 6px">
+              <use xlink:href="/images/feather-sprite.svg#facebook"/>
+            </svg>
+          </a>
+            
         </div>
       </div>
     </div>
@@ -32,11 +70,14 @@
       </p>
     <% end %>
     <a href="<%= @podcast.homepage_url %>" class="link underline f5"><%= pretty_url(@podcast.homepage_url) %></a>
+    
+    <!--
     <div class="mb4 mt3">
     <%= for color <- @colors do %>
       <div class="mr2" style="width: 25px; height: 25px; float: left; background-color: <%= color %>;"></div>
     <% end %>
     </div>
+    -->
   </div>
 </article>
 

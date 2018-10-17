@@ -11,12 +11,19 @@ let mix = require('laravel-mix');
  |
  */
 
+mix.options({
+  clearConsole: false,
+  processCssUrls: false
+});
+
 mix
   .js('assets/js/app.js', 'priv/static/js')
   .sass('assets/css/app.scss', 'priv/static/css', {
     includePaths: ['node_modules']
   })
   .setPublicPath('priv/static/')
+  .copyDirectory('assets/static', 'priv/static')
+
 
 // Full API
 // mix.js(src, output);
