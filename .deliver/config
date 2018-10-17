@@ -44,6 +44,7 @@ pre_erlang_clean_compile() {
     echo run done
     # run your custom task
     cd '$BUILD_AT'
-    APP='$APP' MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD phx.digest $SILENCE
+    # maybe I don't need this because webpack/laravel-mix does it for me?
+    # APP='$APP' MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD phx.digest $SILENCE
   "
 }
