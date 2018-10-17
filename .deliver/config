@@ -37,11 +37,13 @@ pre_erlang_clean_compile() {
     # prepare something
     mkdir -p priv/static # required by the phoenix.digest task
     cd '$BUILD_AT'
+    echo pre install
     npm install
+    echo pre run
     npm run production
-
+    echo run done
     # run your custom task
     cd '$BUILD_AT'
-    APP='$APP' MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD phoenix.digest $SILENCE
+    APP='$APP' MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD phx.digest $SILENCE
   "
 }
