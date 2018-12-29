@@ -35,10 +35,10 @@ defmodule Subscribe.Colors do
 
   ## Examples
 
-      iex> get_dark_color %Subscribe.Colors{dominant: [%{b: 134, g: 161, r: 191}, %{b: 20, g: 150, r: 13}]}
+      iex> get_dark_color %Subscribe.Colors{dominant: [%{b: 184, g: 161, r: 191}, %{b: 20, g: 150, r: 13}]}
       %{b: 20, g: 150, r: 13}
 
-      iex> get_dark_color %Subscribe.Colors{dominant: [%{b: 134, g: 161, r: 191}]}
+      iex> get_dark_color %Subscribe.Colors{dominant: [%{b: 184, g: 161, r: 191}]}
       %{b: 0, g: 0, r: 0}
   """
   def get_dark_color(%Colors{dominant: dominant}) do
